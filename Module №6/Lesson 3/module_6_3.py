@@ -1,36 +1,35 @@
-class Horse:
+class Horse():
     def __init__(self):
-        self.x_distance = 0  # Пройденный путь.
+        self.x_distance = 0  # пройденный путь.
         self.sound = 'Frrr'  # звук, который издаёт лошадь.
-        super().__init__()
 
-    # dx - изменение дистанции, увеличивает x_distance на dx.
+    # где dx - изменение дистанции, увеличивает x_distance на dx.
     def run(self, dx):
         self.x_distance += dx
 
 
 class Eagle():
-
     def __init__(self):
-        self.y_distance = 0  # Высота полёта.
-        self.sound = 'I train eat, sleep, and repeat'  # Звук, который издаёт орёл (отсылка).
+        self.y_distance = 0  # высота полёта
+        # звук, который издаёт орёл(отсылка)
+        self.sound = 'I train, eat, sleep, and repeat'
 
-    # dy - изменение дистанции, увеличивает y_distance на dy.
+    # где dy - изменение дистанции, увеличивает y_distance на dy.
     def fly(self, dy):
         self.y_distance += dy
 
 
 class Pegasus(Horse, Eagle):
-
     def __init__(self):
-        super().__init__()
+        Horse.__init__(self)
+        Eagle.__init__(self)
 
-    # Где dx и dy изменения дистанции. В этом методе должны запускаться наследованные методы run и fly соответственно.
+    # где dx и dy изменения дистанции. В этом методе должны запускаться наследованные методы run и fly соответственно.
     def move(self, dx, dy):
-        self.run(dx)
-        self.fly(dy)
+        super().run(dx)
+        super().fly(dy)
 
-    # Возвращает текущее положение пегаса в виде кортежа - (x_distance, y_distance) в том же порядке.
+    # возвращает текущее положение пегаса в виде кортежа - (x_distance, y_distance) в том же порядке.
     def get_pos(self):
         return [self.x_distance, self.y_distance]
 
